@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>Calendar</h1>
+
+  <%#= Time.now.sunday %>
+  <%#= Time.now.sunday.strftime("Printed on %m/%d/%Y") %>
+  <%#= Time.now.strftime("%A") %>
+
+<%= calendar( @month, @year) %>
+</div>

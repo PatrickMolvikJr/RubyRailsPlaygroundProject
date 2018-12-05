@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @restaurant.name %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @restaurant.location %>
+</p>
+
+<p>
+  <strong>Cuisine:</strong>
+  <%= @restaurant.cuisine %>
+</p>
+
+<p>
+  <strong>Low price range:</strong>
+  <%= number_to_currency @restaurant.low_price_range %>
+</p>
+
+<p>
+  <strong>High price range:</strong>
+  <%= number_to_currency @restaurant.high_price_range %>
+</p>
+<p>
+  <strong>Image</strong>
+  <%= image_tag @restaurant.image %>
+</p>
+
+# List All the Reviews
+<% @restaurant.reviews.each do | review | %>
+    <div>
+
+      <p>By: <%= review.name %></p>
+      <p>Text: <%= review.review_text %></p>
+      <p>Rating: <%= review.rating %></p>
+      <p>Date: <%= review.created_at %></p>
+    </div>
+<% end %>
+# Form Data to Enter a New Review
+
+<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+<%= link_to 'Back', restaurants_path %>

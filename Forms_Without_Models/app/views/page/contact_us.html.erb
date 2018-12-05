@@ -1,0 +1,41 @@
+<div class="container">
+  <br />
+  <h1>Contact Us</h1>
+
+  <br/>
+</div>
+<div class="container">
+
+  <%= form_tag '/page/contact_us', method: :get do %>
+
+      <%= label_tag 'first_name', "Enter your first name:" %>
+      <%= text_field_tag 'first_name', @first_name %>
+
+      <%= label_tag 'last_name', "Enter your last name:" %>
+      <%= text_field_tag 'last_name', @last_name %>
+
+      <%= label_tag 'email', "Enter your Email:" %>
+      <%= email_field_tag 'user_email', @user_email %>
+
+      <%= label_tag 'phone_number', "Enter your phone number:" %>
+      <%= text_field_tag 'phone_number', @phone_number %>
+
+      <%= label_tag 'question', "Enter your question:" %>
+      <%= text_area_tag 'question', @question %><br />
+
+      <%= label_tag 'contact_question', "What is your preferred method of contact?" %><br />
+
+      <%= label_tag 'contact_email', 'Email' %>
+      <%= radio_button_tag 'contact_type', 'email', @contact_type == 'email' %>
+
+      <%= label_tag 'contact_phone', 'Phone' %>
+      <%= radio_button_tag 'contact_type', 'phone', @contact_type == 'phone' %><br /><br />
+
+
+      <%= label_tag 'product', "What product?"%>
+      <%= select_tag( 'product', options_for_select(@product_names, @selected_product)) %>
+
+      <br/><%= submit_tag "Submit Question" %>
+
+  <% end %>
+</div>

@@ -1,0 +1,90 @@
+<% tinymce %>
+
+<p id="notice"><%= notice %></p>
+
+<% average = @product.product_reviews.all.average( :rating ) %>
+
+<%= (image_tag('greenStar.png', size: '20x20') * average).html_safe %>
+
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @product.description %>
+</p>
+
+<p>
+  <strong>Quantity on hand:</strong>
+  <%= @product.quantity_on_hand %>
+</p>
+
+<p>
+  <strong>Selling price:</strong>
+  <%= @product.selling_price %>
+</p>
+
+<p>
+  <strong>Cost of product:</strong>
+  <%= @product.cost_of_product %>
+</p>
+
+<p>
+  <strong>Shipping weight:</strong>
+  <%= @product.shipping_weight %>
+</p>
+<p>
+  <strong>Thumbnail:</strong>
+  <%= image_tag @product.thumbnail %>
+</p>
+<p>
+  <strong>Image:</strong>
+  <%= image_tag @product.image %>
+</p>
+
+<h2><strong>-------------Reviews-------------</strong></h2>
+
+<% @product.product_reviews.each do |review|%>
+    <div class="review_container">
+
+      <p>&nbsp;</p>
+      <p><%= (image_tag('greenStar.png', size: '20x20') * review.rating).html_safe %></p>
+      <p><%= time_ago_in_words review.created_at %> <%= review.name %> wrote:</p>
+      <p><%= review.review_text %></p>
+      <p><%= link_to "Remove", product_product_review_path(@product, review ), method: :delete, data: {confirm: 'Are you sure?'} %></p>
+
+    </div>
+<%end%>
+
+<!--New Review-->
+<%= form_for([@product, @product.product_reviews.build]) do |form| %>
+
+    <%= form.hidden_field :product_id %>
+
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name, id: :product_review_name %>
+    </div>
+
+    <div class="field">
+      <%= form.label :review_text %>
+      <%= form.text_area :review_text, id: :product_review_review_text, class: "tinymce" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :rating %>
+      <%= form.number_field :rating, id: :product_review_rating, max: 10, min: 1 %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
+
+    </div>
+<% end %>
+
+
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>

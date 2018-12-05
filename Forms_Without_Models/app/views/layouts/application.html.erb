@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Rails Website</title>
+  <%= csrf_meta_tags %>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+</head>
+<body class="homepage">
+<div id="page-wrapper">
+  <header id="header">
+    <div class="logo container">
+      <div>
+        <h1>Ruby On Rails!</h1><br />
+      </div>
+    </div>
+    <div class="container">
+
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+
+    </div>
+
+  </header>
+  <!-- Nav -->
+  <%= render 'shared/nav' %>
+  <%= yield %>
+  <!-- Footer -->
+  <footer id="footer" class="container">
+    <div class="row 200%">
+      <div class="12u">
+
+        <!-- About -->
+        <section>
+          <h2 class="major"><span>Ruby On Rails!</span></h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc tempor sed neque sollicitudin viverra. Sed at
+            nulla risus. Maecenas dignissim mauris eget tellus gravida interdum. Vestibulum ante ipsum primis in
+            faucibus orci luctus et ultrices posuere cubilia Curae; Sed tempor vel lectus id feugiat. Duis molestie
+            ipsum id sapien suscipit imperdiet. Nunc semper, nisl quis ultrices ultrices, enim enim venenatis ipsum.
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>

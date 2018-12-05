@@ -1,0 +1,66 @@
+<p>
+  <% if user_signed_in? %>
+      <%= current_user.email %>
+  <% end %>
+</p>
+<nav id="nav">
+  <ul>
+    <li class = "current">
+
+      <%= link_to "Home", root_path %>
+
+    </li>
+    <li class="current">
+
+      <%= link_to "Store", store_index_path %>
+
+    </li>
+    <li class="current">
+
+      <%= link_to "Blogs", blogs_path %>
+
+    </li>
+    <li class="current">
+
+      <%= link_to "Calendar", calendar_path %>
+
+    </li>
+    <li class="current">
+
+      <%= link_to "Articles", articles_path %>
+
+    </li>
+    <li class="current">
+
+      <%= link_to "Contact Us", page_contact_us_path %>
+      <ul>
+        <% if user_signed_in? %>
+            <li class="current">
+
+              <%= link_to "Preferences", edit_user_registration_path %>
+
+            </li>
+            <li class="current">
+
+              <%= link_to "Logout", destroy_user_session_path, :method => :delete %>
+            </li>
+        <% else %>
+            <li class="current">
+
+              <%= link_to "Register", new_user_registration_path %>
+
+            </li>
+            <li class="current">
+
+              <%= link_to "Login", new_user_session_path %>
+
+            </li>
+
+        <% end %>
+      </ul>
+
+    </li>
+
+
+  </ul>
+</nav>

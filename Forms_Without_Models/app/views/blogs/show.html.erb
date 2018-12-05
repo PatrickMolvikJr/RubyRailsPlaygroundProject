@@ -1,0 +1,73 @@
+<%= tinymce %>
+
+<% average = @blog.comments.all.average( :rating ) %>
+<% if average == nil %>
+  <% average = 0 %>
+<%end%>
+<%= (image_tag('greenStar.png', size: '20x20') * average).html_safe %>
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @blog.title %>
+</p>
+
+<p>
+  <strong>Author:</strong>
+  <%= @blog.author %>
+</p>
+
+<p>
+  <strong>Published date:</strong>
+  <%= @blog.published_date %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @blog.content.html_safe %>
+</p>
+<h2><strong>-------------Comments-------------</strong></h2>
+
+<% @blog.comments.each do |comment|%>
+    <div class="review_container">
+
+      <p>&nbsp;</p>
+      <p><%= (image_tag('greenStar.png', size: '20x20') * comment.rating).html_safe %></p>
+      <p><%= time_ago_in_words comment.created_at %> <%= comment.author %> wrote:</p>
+      <p><%= comment.content.html_safe %></p>
+
+
+    </div>
+<%end%>
+
+
+<!--New Comment-->
+<%= form_for([@blog, @blog.comments.build]) do |form| %>
+
+    <%= form.hidden_field :id %>
+
+    <div class="field">
+      <%= form.label :author %>
+      <%= form.text_field :author, id: :blog_comment_author %>
+    </div>
+
+    <div class="field">
+      <%= form.label :content %>
+      <%= form.text_area :content, id: :blog_comment_text, class: "tinymce" %>
+    </div>
+
+    <div class="field">
+      <%= form.label :rating %>
+      <%= form.number_field :rating, id: :blog_comment_rating, max: 5, min: 1 %>
+    </div>
+
+    <div class="actions">
+      <%= form.submit %>
+
+    </div>
+<% end %>
+
+
+<%= link_to 'Edit', edit_blog_path(@blog) %> |
+<%= link_to 'Back', blogs_path %>
